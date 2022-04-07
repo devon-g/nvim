@@ -38,3 +38,6 @@ vim.api.nvim_create_autocmd(
 
 -- Set colorscheme
 vim.cmd([[colorscheme gruvbox]])
+
+-- Set completion settings
+vim.opt.completeopt:append({"menuone", "noselect"})

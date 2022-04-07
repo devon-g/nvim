@@ -3,22 +3,6 @@ local ok, packer = pcall(require, "packer")
 if not ok then
 	return	-- Not loaded due to error
 end
-
--- Bootstrapping for any machine I move this config to
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.api.nvim_create_autocmd(
-	"BufWritePost",
-	{
-		pattern = "plugins.lua",
-	command = "source <afile> | PackerSync"
-	}
-)
 	
 return packer.startup({
 	function()
@@ -33,10 +17,27 @@ return packer.startup({
 			run = ":TSUpdate"
 		}
 
-		-- Automatically set up configuration after cloning packer.nvim
-		if packer_bootstrap then
-			require("packer").sync()
-		end
+		-- Language server
+		use {
+			"neovim/nvim-lspconfig",
+		}
+
+		-- Completion
+		use {
+			"hrsh7th/nvim-cmp",
+			--"hrsh7th/cmp-nvim-lsp",
+			--"hrsh7th/cmp-buffer",
+			--"hrsh7th/cmp-path",
+			--"hrsh7th/cmp-cmdline",
+			--"hrsh7th/cmp-nvim-lua",
+			--"onsails/lspkind-nvim"
+		}
+
+		-- Snippet plugins
+		use {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip"
+		}
 	end,
 	
 	-- Configuration of packer goes in this config table
