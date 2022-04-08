@@ -1,11 +1,26 @@
 -- Use a protected call so we don't error out on first use
-local ok, packer = pcall(require, "packer")
-if not ok then
-	return	-- Not loaded due to error
+local packer_ok, packer = pcall(require, "packer")
+if not packer_ok then
+	return print("Packer not loaded properly")
 end
-	
+
+local p_util_ok, p_util = pcall(require, "packer.util")
+if not p_util_ok then
+	return print("Packer Utils not loaded properly")
+end
+
+-- Auto source plugins on file save
+vim.api.nvim_create_autocmd(
+	"BufWritePost",
+	{
+		pattern = "plugins.lua",
+		command = "source <afile> | PackerSync"
+	}
+)
+
 return packer.startup({
-	function()
+	-- Install plugins
+	function(use)
 		use { "wbthomason/packer.nvim" }
 
 		-- Color schemes
@@ -17,35 +32,33 @@ return packer.startup({
 			run = ":TSUpdate"
 		}
 
-		-- Language server
-		use {
-			"neovim/nvim-lspconfig",
-		}
+		-- Language Servers
+		use { "neovim/nvim-lspconfig" }
+		use { "mfussenegger/nvim-jdtls" }
 
 		-- Completion
 		use {
 			"hrsh7th/nvim-cmp",
-			--"hrsh7th/cmp-nvim-lsp",
-			--"hrsh7th/cmp-buffer",
-			--"hrsh7th/cmp-path",
-			--"hrsh7th/cmp-cmdline",
-			--"hrsh7th/cmp-nvim-lua",
-			--"onsails/lspkind-nvim"
+			requires = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-cmdline",
+				"hrsh7th/cmp-nvim-lua",
+				"onsails/lspkind-nvim"
+			}
 		}
 
+		use { "windwp/nvim-autopairs" }
+
 		-- Snippet plugins
-		use {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip"
-		}
+		use { "L3MON4D3/LuaSnip" }
+		use { "saadparwaiz1/cmp_luasnip" }
 	end,
-	
-	-- Configuration of packer goes in this config table
+	-- Use floating window
 	config = {
 		display = {
-			open_fn = function()
-				return require("packer.util").float({ border = 'single' })
-			end
+			open_fn = p_util.float
 		}
 	}
 })

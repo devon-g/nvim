@@ -1,20 +1,19 @@
---[[
 -- Make sure cmp loads fine before configuring cmp
-local ok, cmp = pcall(require, "cmp")
-if not ok then
-	return
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then
+	return print("CMP failed to load")
 end
 
 -- Make sure luasnip loads fine before configuring cmp
-local ok, luasnip = pcall(require, "luasnip")
-if not ok then
-	return
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then
+	return print("LuaSnip failed to load")
 end
 
 -- Make sure lspkind loads fine before configuring cmp
-local ok, lspkind = pcall(require, "lspkind")
-if not ok then
-	return
+local lspkind_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_ok then
+	return print("LspKind failed to load")
 end
 
 -- Thing for luasnip tab selection
@@ -73,8 +72,8 @@ cmp.setup({
 		end, { 'i', 's' })
 	},
 	sources = {
-		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
+		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" }
 	},
@@ -103,4 +102,3 @@ cmp.setup.cmdline('/', {
 		}
 	}
 })
---]]
