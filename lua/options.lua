@@ -9,6 +9,7 @@ local options =
 	smartindent = true,							-- smart autoindenting for C programs
 	splitbelow = true,							-- new window from split is below the current one
 	splitright = true,							-- new window from vsplit is right of the current one
+	syntax = true,
 	tabstop = 4,										-- number of spaces that <Tab> in file uses
 	termguicolors = true,						-- enables 24-bit RGB color in the TUI
 	wrap = false										-- long lines wrap and continue on the next line
@@ -31,7 +32,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
 	"FileType",
 	{
-		pattern = {"lua", "css"},
+		pattern = { "lua", "css", "tex" },
 		command = "set shiftwidth=2 tabstop=2"
 	}
 )

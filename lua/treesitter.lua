@@ -8,5 +8,8 @@ ts_configs.setup({
 	ensure_installed = "maintained",
 
 	-- Syntax highlighting module (settings configured here)
-	highlight = { enable = true }
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = true
+	}
 })

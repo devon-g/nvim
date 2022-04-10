@@ -35,6 +35,7 @@ return packer.startup({
 		-- Language Servers
 		use { "neovim/nvim-lspconfig" }
 		use { "mfussenegger/nvim-jdtls" }
+		use { "lervag/vimtex" }
 
 		-- Completion
 		use {

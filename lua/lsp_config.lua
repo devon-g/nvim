@@ -43,6 +43,7 @@ local servers = {
 	"tsserver",
 	"cssmodules_ls",
 	"sumneko_lua",
+	"texlab",
 }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
