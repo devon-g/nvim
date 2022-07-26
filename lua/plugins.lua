@@ -1,65 +1,58 @@
--- Use a protected call so we don't error out on first use
-local packer_ok, packer = pcall(require, "packer")
+local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
-	return print("Packer not loaded properly")
+  return
 end
 
-local p_util_ok, p_util = pcall(require, "packer.util")
-if not p_util_ok then
-	return print("Packer Utils not loaded properly")
-end
-
--- Auto source plugins on file save
-vim.api.nvim_create_autocmd(
-	"BufWritePost",
-	{
-		pattern = "plugins.lua",
-		command = "source <afile> | PackerSync"
-	}
-)
-
-return packer.startup({
-	-- Install plugins
-	function(use)
-		use { "wbthomason/packer.nvim" }
-
-		-- Color schemes
-		use { "ellisonleao/gruvbox.nvim" }
-
-		-- Syntax highlighting
-		use {
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate"
-		}
-
-		-- Language Servers
-		use { "neovim/nvim-lspconfig" }
-		use { "mfussenegger/nvim-jdtls" }
-		use { "lervag/vimtex" }
-
-		-- Completion
-		use {
-			"hrsh7th/nvim-cmp",
-			requires = {
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
-				"hrsh7th/cmp-cmdline",
-				"hrsh7th/cmp-nvim-lua",
-				"onsails/lspkind-nvim"
-			}
-		}
-
-		use { "windwp/nvim-autopairs" }
-
-		-- Snippet plugins
-		use { "L3MON4D3/LuaSnip" }
-		use { "saadparwaiz1/cmp_luasnip" }
-	end,
-	-- Use floating window
-	config = {
-		display = {
-			open_fn = p_util.float
-		}
-	}
-})
+local use = packer.use
+-- Configure packer
+packer.startup(function()
+  use 'wbthomason/packer.nvim' -- Package manager
+  use 'neovim/nvim-lspconfig' -- Configurations for nvim lsp
+  use 'ellisonleao/gruvbox.nvim' -- Gruvbox theme
+  use { -- Syntax highlighting
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use { -- Fuzzy finder
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'BurntSushi/ripgrep' }
+    }
+  }
+  use { -- Auto completion
+    'hrsh7th/nvim-cmp',
+    requires = {
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' }
+    }
+  }
+  use { -- Debugger tool with UI
+    'rcarriga/nvim-dap-ui',
+    requires = { 'mfussenegger/nvim-dap' }
+  }
+  use { -- Debugger tool telescope integration
+    'nvim-telescope/telescope-dap.nvim',
+    requires = {
+      { 'nvim-telescope/telescope.nvim' },
+      { 'mfussenegger/nvim-dap' }
+    }
+  }
+  use { -- Virtual text support for dap and treesitter
+    'theHamsta/nvim-dap-virtual-text',
+    requires = {
+      { 'nvim-treesitter/nvim-treesitter' },
+      { 'mfussenegger/nvim-dap' }
+    }
+  }
+  use { -- CMake tools
+    'Shatur/neovim-cmake',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'mfussenegger/nvim-dap' }
+    }
+  }
+end)

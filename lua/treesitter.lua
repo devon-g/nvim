@@ -1,15 +1,30 @@
-local ok, ts_configs = pcall(require, "nvim-treesitter.configs")
+local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+-- If treesitter failed to import, don't try do do any configurations
 if not ok then
-	return
+  return
 end
 
-ts_configs.setup({
-	-- Ensure that all maintained parsers are installed
-	ensure_installed = "maintained",
+-- Configure treesitter
+treesitter.setup{
+  -- Languages to highlight
+  ensure_installed = 'all',
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false
+  },
+  indent = {
+    enable = true
+  }
+}
 
-	-- Syntax highlighting module (settings configured here)
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true
-	}
-})
+-- Folding support
+-- Workaround for treesitter + folds
+--vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
+--  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+--  callback = function(command)
+--    vim.opt.foldmethod = 'expr'
+--    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+--  end
+--})
