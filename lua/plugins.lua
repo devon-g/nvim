@@ -14,6 +14,7 @@ packer.startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'windwp/nvim-autopairs' -- Automatically pair symbols and also wrap words with parentheses
   use { -- Fuzzy finder
     'nvim-telescope/telescope.nvim',
     requires = {

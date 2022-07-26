@@ -1,8 +1,9 @@
 local cmp_ok, cmp = pcall(require, 'cmp')
 local luasnip_ok, luasnip = pcall(require, 'luasnip')
+local cmp_autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
 -- Don't run configuration commands unless cmp imports correctly
-if not (cmp_ok and luasnip_ok) then
-  print("cmp and/or luasnip failed to load.")
+if not (cmp_ok and luasnip_ok and cmp_autopairs_ok) then
+  print("cmp and/or luasnip and/or nvim-autopairs failed to load.")
   return
 end
 
@@ -39,3 +40,8 @@ cmp.setup.filetype('gitcommit', {
     { name = 'buffer' }
   })
 })
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)

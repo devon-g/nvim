@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/home/devon/.local/share/nvim/site/pack/packer/start/neovim-cmake",
     url = "https://github.com/Shatur/neovim-cmake"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/devon/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/devon/.local/share/nvim/site/pack/packer/start/nvim-cmp",
