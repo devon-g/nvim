@@ -4,6 +4,12 @@ if not telescope_ok then
   return
 end
 
+telescope.setup({
+  defaults = {
+    file_ignore_patterns = { "build" }
+  }
+})
+
 -- Load dap features
 telescope.load_extension('dap')
 telescope.load_extension('ui-select')
