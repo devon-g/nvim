@@ -1,5 +1,6 @@
 local options = {
   background = "dark",            -- dark background for gruvbox theme
+  colorcolumn = "80,120",         -- draw lines on column 80 and 120 to standardize line length
   expandtab = true,               -- Expand tab characters into spaces
   guifont = "FiraCode Nerd Font", -- Name(s) of font(s) to be used
   ignorecase = true,              -- ignore case in search patterns
