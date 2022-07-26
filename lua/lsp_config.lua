@@ -1,7 +1,8 @@
 local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 -- Only continue with configuration if lspconfig fails to import
-if not lspconfig_ok and cmp_nvim_lsp_ok then
+if not (lspconfig_ok and cmp_nvim_lsp_ok) then
+  print('lspconfig and/or cmp_nvim_lsp failed to load')
   return
 end
 
@@ -13,8 +14,8 @@ local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_clie
 -- Global mappings
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<space>dj', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>dk', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys after the language
@@ -31,28 +32,28 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
+  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
 end
 
 -- Use lspconfig to configure clangd
 -- TODO: Configure clangd and remember to set up .clangd configurations for
 -- each project.
-lspconfig['clangd'].setup{
+lspconfig['clangd'].setup({
   capabilities = capabilities,
   on_attach = on_attach
-}
+})
 
 -- Configure sumneko_lua specifically for nvim lua files
-lspconfig['sumneko_lua'].setup{
+lspconfig['sumneko_lua'].setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -75,4 +76,4 @@ lspconfig['sumneko_lua'].setup{
       }
     }
   }
-}
+})

@@ -1,11 +1,12 @@
-local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+local treesitter_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
 -- If treesitter failed to import, don't try do do any configurations
-if not ok then
+if not treesitter_ok then
+  print('treesitter failed to load')
   return
 end
 
 -- Configure treesitter
-treesitter.setup{
+treesitter.setup({
   -- Languages to highlight
   ensure_installed = 'all',
   sync_install = false,
@@ -13,11 +14,11 @@ treesitter.setup{
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false
-  },
-  indent = {
-    enable = true
-  }
-}
+  }--,
+--  indent = {
+--    enable = true
+--  }
+})
 
 -- Folding support
 -- Workaround for treesitter + folds

@@ -1,5 +1,6 @@
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
+  print("packer failed to load.")
   return
 end
 
@@ -19,6 +20,10 @@ packer.startup(function()
       { 'nvim-lua/plenary.nvim' },
       { 'BurntSushi/ripgrep' }
     }
+  }
+  use { -- Use telescope for ui selection prompts
+    'nvim-telescope/telescope-ui-select.nvim',
+    requires = { 'nvim-telescope/telescope.nvim' }
   }
   use { -- Auto completion
     'hrsh7th/nvim-cmp',

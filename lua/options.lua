@@ -1,5 +1,4 @@
-local options =
-{
+local options = {
   background = "dark",            -- dark background for gruvbox theme
   expandtab = true,               -- Expand tab characters into spaces
   guifont = "FiraCode Nerd Font", -- Name(s) of font(s) to be used
@@ -15,6 +14,9 @@ local options =
   termguicolors = true,           -- enables 24-bit RGB color in the TUI
   wrap = false                    -- long lines wrap and continue on the next line
 }
+
+-- Change leader key from \ to <space>
+vim.g['mapleader'] = ' '
 
 for k, v in pairs(options) do
   vim.o[k] = v
