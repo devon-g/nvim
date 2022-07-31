@@ -61,4 +61,5 @@ packer.startup(function()
       { 'mfussenegger/nvim-dap' }
     }
   }
+  use 'nvim-jdtls' -- Java lsp and more
 end)
