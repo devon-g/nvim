@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/devon/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
     url = "https://github.com/theHamsta/nvim-dap-virtual-text"
   },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "/home/devon/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
+    url = "https://github.com/nvim-jdtls"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/devon/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
