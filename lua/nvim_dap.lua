@@ -33,17 +33,25 @@ dap.listeners.before.event_exited['dapui_config'] = function()
 end
 
 -- Adapters
-dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode',
-  name = 'lldb'
+--dap.adapters.lldb = {
+--  type = 'executable',
+--  command = '/usr/bin/lldb-vscode',
+--  name = 'lldb'
+--}
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = '/home/devon/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb',
+    args = {'--port', '${port}'}
+  }
 }
 
 -- Configurations
 dap.configurations.cpp = {
   {
     name = 'Launch',
-    type = 'lldb',
+    type = 'codelldb',
     request = 'launch',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -54,7 +62,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Attach to process",
-    type = 'lldb',
+    type = 'codelldb',
     request = 'attach',
     pid = dap_utils.pick_process,
     args = {}
