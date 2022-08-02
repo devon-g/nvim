@@ -90,6 +90,14 @@ function M.setup()
       end
     }
 
+    -- Toggleterm
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require("config.toggle_term").setup()
+      end
+    }
+
     if packer_bootstrap then
       print("Restart required after installation.")
       require("packer").sync()
