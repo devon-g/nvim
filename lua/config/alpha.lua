@@ -41,7 +41,7 @@ function M.setup()
 
   dashboard.section.buttons.val = {
     dashboard.button("e", "New file", ":ene <Bar> startinsert<CR>"),
-    dashboard.button("c", "Configuration", ":tabnew $MYVIMRC <Bar> lcd %:h<CR>"),
+    dashboard.button("c", "Configuration", ":e $MYVIMRC <Bar> cd %:h<CR>"),
     dashboard.button("q", "Quit Neovim", ":qa<CR>"),
   }
 
