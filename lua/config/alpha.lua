@@ -40,8 +40,8 @@ function M.setup()
 	dashboard.section.header.val = header()
 
 	dashboard.section.buttons.val = {
-		dashboard.button("e", "New file", ":ene | startinsert<CR>"),
-		dashboard.button("c", "Configuration", ":e $MYVIMRC<CR>"),
+		dashboard.button("e", "New file", ":ene <Bar> startinsert<CR>"),
+		dashboard.button("c", "Configuration", ":e $MYVIMRC <Bar> cd %:h<CR>"),
 		dashboard.button("q", "Quit Neovim", ":qa<CR>"),
 	}
 
