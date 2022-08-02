@@ -65,7 +65,6 @@ function M.setup()
     -- IndentLine
     use {
       "lukas-reineke/indent-blankline.nvim",
-      event = "VimEnter",
       config = function()
         require("config.indentblankline").setup()
       end,
