@@ -23,9 +23,9 @@ vim.opt.wrap = false -- No line wrapping
 -- Highlight on yank
 local group = vim.api.nvim_create_augroup("YankHighlight", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
+  callback = function()
         vim.highlight.on_yank()
     end,
-	pattern = "*",
-	group = group
+  pattern = "*",
+  group = group
 })
