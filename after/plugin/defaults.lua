@@ -18,6 +18,7 @@ vim.opt.smartindent = true -- Smart autoindenting for C programs
 vim.opt.tabstop = 4 -- Number of spaces that <Tab> in file uses
 vim.opt.termguicolors = true -- Enable colors in terminal
 vim.opt.undofile = true -- Save undo history
+vim.opt.wrap = false -- No line wrapping
 
 -- Highlight on yank
 local group = vim.api.nvim_create_augroup("YankHighlight", {})
