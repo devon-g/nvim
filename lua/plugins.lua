@@ -93,8 +93,25 @@ function M.setup()
     use {
       "akinsho/toggleterm.nvim",
       config = function()
-        require("config.toggle_term").setup()
+        require("config.toggleterm").setup()
       end
+    }
+
+    use {
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      config = function()
+        require("config.lualine").setup()
+      end,
+    }
+
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      module = "nvim-gps",
+      config = function()
+        require("nvim-gps").setup()
+      end,
     }
 
     if packer_bootstrap then
