@@ -36,7 +36,10 @@ function M.setup()
     use { "wbthomason/packer.nvim" }
 
     -- Load only when required
-    use { "nvim-lua/plenary.nvim", module = "plenary" }
+    use {
+      "nvim-lua/plenary.nvim",
+      module = "plenary",
+    }
 
     -- Colorscheme
     use {
@@ -59,7 +62,7 @@ function M.setup()
       "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup()
-      end
+      end,
     }
 
     -- IndentLine
@@ -84,7 +87,7 @@ function M.setup()
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup()
-      end
+      end,
     }
 
     -- Toggleterm
@@ -92,7 +95,7 @@ function M.setup()
       "akinsho/toggleterm.nvim",
       config = function()
         require("config.toggleterm").setup()
-      end
+      end,
     }
 
     -- Give information about current file in statusline
@@ -117,6 +120,15 @@ function M.setup()
     use {
       "ibhagwan/fzf-lua",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    }
+
+    -- File explorer
+    use {
+      "kyazdani42/nvim-tree.lua",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      config = function()
+        require("config.nvim_tree").setup()
+      end,
     }
 
     if packer_bootstrap then
