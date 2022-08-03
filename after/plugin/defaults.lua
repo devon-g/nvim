@@ -12,6 +12,7 @@ vim.opt.ignorecase = true -- Case insensitive searching unless /C or capital in 
 vim.opt.mouse = "a" -- Enable mouse mode
 vim.opt.number = true -- Make line numbers default
 vim.opt.shiftwidth = 4 -- Number of spaces to use for (auto)indent
+vim.opt.showmode = false -- Hide modes on bottom line since we are using lualine
 vim.opt.signcolumn = "yes" -- Always show sign column
 vim.opt.smartcase = true -- No ignore case when pattern has uppercase
 vim.opt.smartindent = true -- Smart autoindenting for C programs
