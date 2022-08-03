@@ -82,8 +82,6 @@ function M.setup()
     -- Better comments
     use {
       "numToStr/Comment.nvim",
-      opt = true,
-      keys = { "gc", "gcc", "gbc" },
       config = function()
         require("Comment").setup()
       end
@@ -113,6 +111,12 @@ function M.setup()
       config = function()
         require("nvim-navic").setup()
       end,
+    }
+
+    -- Fuzzy finder
+    use {
+      "ibhagwan/fzf-lua",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
     }
 
     if packer_bootstrap then
