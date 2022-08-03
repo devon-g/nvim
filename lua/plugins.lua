@@ -97,6 +97,7 @@ function M.setup()
       end
     }
 
+    -- Give information about current file in statusline
     use {
       "nvim-lualine/lualine.nvim",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -105,12 +106,12 @@ function M.setup()
       end,
     }
 
+    -- Display current context given by lsp
     use {
-      "SmiteshP/nvim-gps",
-      requires = "nvim-treesitter/nvim-treesitter",
-      module = "nvim-gps",
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig",
       config = function()
-        require("nvim-gps").setup()
+        require("nvim-navic").setup()
       end,
     }
 
