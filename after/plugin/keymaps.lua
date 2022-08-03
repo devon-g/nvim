@@ -34,4 +34,4 @@ vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>FzfLua git_files<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", opts)
 
 -- Open nvim-tree
-vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeRefresh | NvimTreeToggle<CR>", opts)
