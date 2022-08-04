@@ -8,10 +8,6 @@ vim.api.nvim_set_keymap("n", "N", "Nzz", opts)
 vim.api.nvim_set_keymap("v", "<", "<gv", opts)
 vim.api.nvim_set_keymap("v", ">", ">gv", opts)
 
--- Switch buffer
-vim.api.nvim_set_keymap("n", "<S-h>", ":bp<CR>", opts)
-vim.api.nvim_set_keymap("n", "<S-l>", ":bn<CR>", opts)
-
 -- Cancel search highlight with ESC
 vim.api.nvim_set_keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
 
