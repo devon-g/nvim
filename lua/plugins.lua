@@ -118,6 +118,11 @@ function M.setup()
 
     -- Fuzzy finder
     use {
+      "junegunn/fzf",
+      run = "./install --all",
+      event = "BufEnter",
+    }
+    use {
       "ibhagwan/fzf-lua",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
     }
