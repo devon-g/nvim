@@ -136,6 +136,57 @@ function M.setup()
       end,
     }
 
+    -- Better completion
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-nvim-lua"
+    use "ray-x/cmp-treesitter"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/cmp-calc"
+    use "f3fora/cmp-spell"
+    use "hrsh7th/cmp-emoji"
+    use "rafamadriz/friendly-snippets"
+    use "saadparwaiz1/cmp_luasnip"
+    use {
+      "hrsh7th/nvim-cmp",
+      wants = { "LuaSnip" },
+      config = function()
+        require("config.nvim_cmp").setup()
+      end,
+    }
+    use {
+      "L3MON4D3/LuaSnip",
+      wants = "friendly-snippets",
+      config = function()
+        require("config.luasnip").setup()
+      end,
+    }
+
+    -- Auto pairs
+    use {
+      "windwp/nvim-autopairs",
+      wants = "nvim-treesitter",
+      module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+      config = function()
+        require("config.autopairs").setup()
+      end,
+    }
+    use {
+      "RRethy/nvim-treesitter-endwise",
+      wants = "nvim-treesitter",
+      event = "InsertEnter",
+    }
+
+    -- Auto tag
+    use {
+      "windwp/nvim-ts-autotag",
+      wants = "nvim-treesitter",
+      event = "InsertEnter",
+      config = function()
+        require("nvim-ts-autotag").setup({ enable = true })
+      end
+    }
+
     if packer_bootstrap then
       print("Restart required after installation.")
       require("packer").sync()

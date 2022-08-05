@@ -11,6 +11,16 @@ function M.setup()
     ensure_installed = "all",
     -- Syntax highlighting
     highlight = { enable = true },
+
+    -- Match end statement for a few languages (nvim-treesitter-endwise)
+    endwise = {
+      enable = true,
+    },
+
+    -- Match tags like html, xml, etc (nvim-ts-autotag)
+    autotag = {
+      enable = true,
+    },
   }
 
   treesitter.setup(config)
