@@ -147,6 +147,7 @@ function M.setup()
     use "hrsh7th/cmp-emoji"
     use "rafamadriz/friendly-snippets"
     use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
       wants = { "LuaSnip" },
@@ -174,17 +175,28 @@ function M.setup()
     use {
       "RRethy/nvim-treesitter-endwise",
       wants = "nvim-treesitter",
-      event = "InsertEnter",
     }
 
     -- Auto tag
     use {
       "windwp/nvim-ts-autotag",
       wants = "nvim-treesitter",
-      event = "InsertEnter",
       config = function()
         require("nvim-ts-autotag").setup({ enable = true })
       end
+    }
+
+    -- LSP
+    use {
+      "neovim/nvim-lspconfig",
+      wants = { "nvim-lsp-installer" },
+      config = function()
+        require("config.lsp").setup()
+      end,
+      requires = {
+        "williamboman/nvim-lsp-installer",
+        "ray-x/lsp_signature.nvim",
+      },
     }
 
     if packer_bootstrap then
