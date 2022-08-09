@@ -195,7 +195,7 @@ function M.setup()
       end,
       requires = {
         "williamboman/nvim-lsp-installer",
-        "ray-x/lsp_signature.nvim",
+        -- "ray-x/lsp_signature.nvim",
       },
     }
 
