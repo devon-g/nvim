@@ -13,7 +13,7 @@ function M.setup()
 
     display = {
       open_fn = function()
-        return require("packer.util").float({ border = "rounded" })
+        return require("packer.util").float()
       end,
     },
   }
@@ -24,11 +24,18 @@ function M.setup()
     local fn = vim.fn
     local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
-      packer_bootstrap = fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path,
+      packer_bootstrap = fn.system({
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
       })
       vim.api.nvim_command("packadd packer.nvim")
     end
-    vim.api.nvim_create_autocmd("BufWritePost plugins.lua", { pattern = "plugins.lua", command = "source <afile> | PackerCompile" })
+    vim.api.nvim_create_autocmd("BufWritePost plugins.lua",
+      { pattern = "plugins.lua", command = "source <afile> | PackerCompile" })
   end
 
   -- Plugins
@@ -195,7 +202,7 @@ function M.setup()
       end,
       requires = {
         "williamboman/nvim-lsp-installer",
-        -- "ray-x/lsp_signature.nvim",
+        -- "ray-x/lsp_signature.nvim", -- lsp_signature causing st to crash for some reason
       },
     }
 
