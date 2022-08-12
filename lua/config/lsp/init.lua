@@ -9,7 +9,29 @@ local servers = {
   jsonls = {}, -- JSON
   lemminx = {}, -- XML
   pyright = {}, -- Python
-  sumneko_lua = {}, -- Lua
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of lua you are using
+          version = "LuaJIT",
+          -- Setup your lua path
+          path = vim.split(package.path, ";"),
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "vim" },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  }, -- Lua
   yamlls = {}, -- YAML
 }
 
@@ -20,9 +42,6 @@ local servers = {
 --
 -- lsp_signature.setup({
 --   bind = true,
---   handler_opts = {
---     border = "rounded",
---   },
 -- })
 
 local function on_attach(client, bufnr)
