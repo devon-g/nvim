@@ -3,8 +3,7 @@ local M = {}
 function M.setup()
   local status_ok_luasnip, luasnip = pcall(require, "luasnip")
   local status_ok_cmp, cmp = pcall(require, "cmp")
-  local status_ok_cmp_autopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-  if not (status_ok_luasnip and status_ok_cmp and status_ok_cmp_autopairs) then
+  if not (status_ok_luasnip and status_ok_cmp) then
     return
   end
 
@@ -81,8 +80,8 @@ function M.setup()
       { name = "buffer" },
     }),
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
   })
 
@@ -103,8 +102,6 @@ function M.setup()
       { name = "cmdline" },
     })
   })
-
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 end
 
 return M
