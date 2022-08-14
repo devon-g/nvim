@@ -1,14 +1,12 @@
 local M = {}
 
 function M.setup()
-  local status_ok, nvim_autopairs = pcall(require, "nvim-autopairs")
-  if not status_ok then
-    return
-  end
+  local nvim_autopairs = require("nvim-autopairs")
 
   nvim_autopairs.setup({
     check_ts = true,
   })
+  nvim_autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
 end
 
 return M
