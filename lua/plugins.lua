@@ -64,12 +64,27 @@ function M.setup()
       end,
     }
 
+    -- Better Netrw
+    use {
+      "kyazdani42/nvim-tree.lua",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      config = function()
+        require("config.nvim_tree").setup()
+      end,
+    }
+
     -- Git
     use {
       "lewis6991/gitsigns.nvim",
       config = function()
         require("gitsigns").setup()
       end,
+    }
+    use {
+      "kdheepak/lazygit.nvim",
+      config = function()
+        require("config.lazygit").setup()
+      end
     }
 
     -- IndentLine
@@ -132,15 +147,6 @@ function M.setup()
     use {
       "ibhagwan/fzf-lua",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    }
-
-    -- File explorer
-    use {
-      "kyazdani42/nvim-tree.lua",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
-      config = function()
-        require("config.nvim_tree").setup()
-      end,
     }
 
     -- Better completion
