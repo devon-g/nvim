@@ -130,20 +130,13 @@ function M.setup()
       end,
     }
 
-    if PLUGINS.fzf_lua.enabled then
-      -- Fuzzy finder
-      use {
-        "junegunn/fzf",
-        run = "./install --all",
-        event = "BufEnter",
-      }
-      use {
-        "ibhagwan/fzf-lua",
-        event = "BufEnter",
-        wants = "nvim-web-devicons",
-        requires = { "junegunn/fzf", run = "./install --all" },
-      }
-    end
+    use {
+      "ibhagwan/fzf-lua",
+      event = "BufEnter",
+      wants = "nvim-web-devicons",
+      requires = { "junegunn/fzf", run = "./install --all" },
+      disable = not PLUGINS.fzf_lua.enabled,
+    }
 
     -- Better completion
     use "hrsh7th/cmp-buffer"
