@@ -108,14 +108,6 @@ function M.setup()
       end,
     }
 
-    -- Toggleterm
-    use {
-      "akinsho/toggleterm.nvim",
-      config = function()
-        require("config.toggleterm").setup()
-      end,
-    }
-
     -- Give information about current file in statusline
     use {
       "nvim-lualine/lualine.nvim",
