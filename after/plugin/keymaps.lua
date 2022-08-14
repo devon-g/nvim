@@ -22,7 +22,7 @@ vim.api.nvim_set_keymap("n", "<Up>", ":resize -1<CR>", opts)
 vim.api.nvim_set_keymap("n", "<Down>", ":resize +1<CR>", opts)
 
 -- Open lazygit popup terminal
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 
 -- Open fuzzy finder
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>FzfLua files<CR>", opts)
