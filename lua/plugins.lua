@@ -79,7 +79,7 @@ function M.setup()
       "kdheepak/lazygit.nvim",
       config = function()
         require("config.lazygit").setup()
-      end
+      end,
     }
 
     -- IndentLine
@@ -88,6 +88,15 @@ function M.setup()
       event = "BufReadPre",
       config = function()
         require("config.indentblankline").setup()
+      end,
+    }
+
+    -- Better icons
+    use {
+      "kyazdani42/nvim-web-devicons",
+      module = "nvim-web-devicons",
+      config = function()
+        require("nvim-web-devicons").setup({ default = true })
       end,
     }
 
