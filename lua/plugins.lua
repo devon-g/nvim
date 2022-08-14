@@ -91,20 +91,21 @@ function M.setup()
       end,
     }
 
+    -- Better comments
+    use {
+      "numToStr/Comment.nvim",
+      keys = { "gc", "gcc", "gb", "gbc", "gcO", "gco", "gcA" },
+      config = function()
+        require("Comment").setup()
+      end,
+    }
+
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
       config = function()
         require("config.treesitter").setup()
-      end,
-    }
-
-    -- Better comments
-    use {
-      "numToStr/Comment.nvim",
-      config = function()
-        require("Comment").setup()
       end,
     }
 
