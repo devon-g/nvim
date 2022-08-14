@@ -1,12 +1,9 @@
 local M = {}
 
 function M.setup()
-  local status_ok, alpha = pcall(require, "alpha")
-  if not status_ok then
-    return
-  end
-
+  local alpha = require("alpha")
   local dashboard = require("alpha.themes.dashboard")
+
   local function header()
     return {
       "                               ",
@@ -49,7 +46,16 @@ function M.setup()
     -- Number of plugins
     local total_plugins = #vim.tbl_keys(packer_plugins)
     local datetime = os.date("%Y-%m-%d %H:%M:%S")
-    local plugins_text = total_plugins .. " plugins | " .. datetime
+    local plugins_text =
+      "               "
+      .. total_plugins
+      .. " plugins | "
+      .. "v"
+      .. vim.version().major
+      .. "."
+      .. vim.version().minor
+      .. "."
+      .. vim.version().patch
 
     -- Quote
     local fortune = require("alpha.fortune")
