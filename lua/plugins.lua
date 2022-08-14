@@ -100,6 +100,15 @@ function M.setup()
       end,
     }
 
+    -- Better surround
+    use {
+      "kylechui/nvim-surround",
+      event = "InsertEnter",
+      config = function()
+        require("nvim-surround").setup()
+      end,
+    }
+
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
