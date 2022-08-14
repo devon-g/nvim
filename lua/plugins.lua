@@ -124,21 +124,26 @@ function M.setup()
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
+      requires = { "nvim-treesitter/nvim-treesitter-textobjects" },
       config = function()
         require("config.treesitter").setup()
       end,
     }
 
-    -- Fuzzy finder
-    use {
-      "junegunn/fzf",
-      run = "./install --all",
-      event = "BufEnter",
-    }
-    use {
-      "ibhagwan/fzf-lua",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    }
+    if PLUGINS.fzf_lua.enabled then
+      -- Fuzzy finder
+      use {
+        "junegunn/fzf",
+        run = "./install --all",
+        event = "BufEnter",
+      }
+      use {
+        "ibhagwan/fzf-lua",
+        event = "BufEnter",
+        wants = "nvim-web-devicons",
+        requires = { "junegunn/fzf", run = "./install --all" },
+      }
+    end
 
     -- Better completion
     use "hrsh7th/cmp-buffer"
@@ -165,29 +170,6 @@ function M.setup()
       config = function()
         require("config.luasnip").setup()
       end,
-    }
-
-    -- Auto pairs
-    use {
-      "windwp/nvim-autopairs",
-      wants = "nvim-treesitter",
-      module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
-      config = function()
-        require("config.autopairs").setup()
-      end,
-    }
-    use {
-      "RRethy/nvim-treesitter-endwise",
-      wants = "nvim-treesitter",
-    }
-
-    -- Auto tag
-    use {
-      "windwp/nvim-ts-autotag",
-      wants = "nvim-treesitter",
-      config = function()
-        require("nvim-ts-autotag").setup({ enable = true })
-      end
     }
 
     -- LSP
