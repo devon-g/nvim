@@ -47,6 +47,7 @@ function M.setup()
     use {
       "ellisonleao/gruvbox.nvim",
       config = function()
+        require("gruvbox").setup()
         vim.api.nvim_command("colorscheme gruvbox")
       end,
     }
@@ -109,30 +110,22 @@ function M.setup()
       end,
     }
 
+    -- Give information about current file in statusline
+    use {
+      "nvim-lualine/lualine.nvim",
+      after = "nvim-treesitter",
+      wants = "nvim-web-devicons",
+      config = function()
+        require("config.lualine").setup()
+      end,
+    }
+
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
       config = function()
         require("config.treesitter").setup()
-      end,
-    }
-
-    -- Give information about current file in statusline
-    use {
-      "nvim-lualine/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
-      config = function()
-        require("config.lualine").setup()
-      end,
-    }
-
-    -- Display current context given by lsp
-    use {
-      "SmiteshP/nvim-navic",
-      requires = "neovim/nvim-lspconfig",
-      config = function()
-        require("nvim-navic").setup()
       end,
     }
 
