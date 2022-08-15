@@ -1,12 +1,8 @@
 local M = {}
 
 function M.setup()
-  local status_ok_luasnip, luasnip = pcall(require, "luasnip")
-  local status_ok_cmp, cmp = pcall(require, "cmp")
-  if not (status_ok_luasnip and status_ok_cmp) then
-    return
-  end
-
+  local luasnip = require("luasnip")
+  local cmp = require("cmp")
   local utils = require("utils")
 
   cmp.setup({
@@ -70,12 +66,10 @@ function M.setup()
     sources = cmp.config.sources({
       { name = "nvim_lua" },
       { name = "nvim_lsp" },
-      -- { name = "treesitter" },
+      { name = "treesitter" },
       { name = "luasnip" },
       { name = "path" },
-      { name = "spell" },
-      { name = "emoji" },
-      { name = "calc" },
+      { name = "nvim_lsp_signature_help" },
     }, {
       { name = "buffer" },
     }),
@@ -102,6 +96,12 @@ function M.setup()
       { name = "cmdline" },
     })
   })
+
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  cmp.event:on(
+    "confirm_done",
+    cmp_autopairs.on_confirm_done()
+  )
 end
 
 return M
