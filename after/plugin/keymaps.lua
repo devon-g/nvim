@@ -24,10 +24,8 @@ vim.api.nvim_set_keymap("n", "<Down>", ":resize +1<CR>", opts)
 -- Open lazygit popup terminal
 vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 
--- Open fuzzy finder
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>FzfLua files<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>FzfLua git_files<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", opts)
-
--- Open nvim-tree
-vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeRefresh | NvimTreeToggle<CR>", opts)
+-- Open Telescope
+vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope git_files<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
