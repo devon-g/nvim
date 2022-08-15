@@ -16,10 +16,9 @@ function M.setup()
   -- Check if packer.nvim is installed
   -- Run PackerCompile if there are changes in this file
   local function packer_init()
-    local fn = vim.fn
-    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-    if fn.empty(fn.glob(install_path)) > 0 then
-      packer_bootstrap = fn.system({
+    local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+      packer_bootstrap = vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -130,51 +129,91 @@ function M.setup()
       end,
     }
 
+    -- Telescope
     use {
-      "ibhagwan/fzf-lua",
-      event = "BufEnter",
-      wants = "nvim-web-devicons",
-      requires = { "junegunn/fzf", run = "./install --all" },
-      disable = not PLUGINS.fzf_lua.enabled,
+      "nvim-telescope/telescope.nvim",
+      wants = {
+        "plenary.nvim",
+        "popup.nvim",
+        "telescope-fzf-native.nvim",
+        "telescope-project.nvim",
+        "telescope-repo.nvim",
+        "telescope-file-browser.nvim",
+        "project.nvim",
+      },
+      requires = {
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", rune = "make" },
+        "nvim-telescope/telescope-project.nvim",
+        "cljoly/telescope-repo.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
+        {
+          "ahmedkhalf/project.nvim",
+          config = function()
+            require("project_nvim").setup()
+          end,
+        },
+      },
+      config = function()
+        require("config.telescope").setup()
+      end,
     }
 
     -- Better completion
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-nvim-lua"
-    use "ray-x/cmp-treesitter"
-    use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/cmp-calc"
-    use "f3fora/cmp-spell"
-    use "hrsh7th/cmp-emoji"
-    use "rafamadriz/friendly-snippets"
-    use "saadparwaiz1/cmp_luasnip"
-    use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
       wants = { "LuaSnip" },
+      requires = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lua",
+        "ray-x/cmp-treesitter",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        {
+          "L3MON4D3/LuaSnip",
+          wants = "friendly-snippets",
+          config = function()
+            require("config.luasnip").setup()
+          end,
+        },
+        "rafamadriz/friendly-snippets",
+      },
       config = function()
         require("config.nvim_cmp").setup()
       end,
     }
+
+    -- Auto pairs
     use {
-      "L3MON4D3/LuaSnip",
-      wants = "friendly-snippets",
+      "windwp/nvim-autopairs",
+      wants = "nvim-treesitter",
+      module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
       config = function()
-        require("config.luasnip").setup()
+        require("config.autopairs").setup()
       end,
+    }
+
+    -- End wise
+    use {
+      "RRethy/nvim-treesitter-endwise",
+      wants = "nvim-treesitter",
+      event = "InsertEnter",
     }
 
     -- LSP
     use {
       "neovim/nvim-lspconfig",
-      wants = { "nvim-lsp-installer" },
+      wants = { "nvim-lsp-installer", "lsp_signature.nvim" },
       config = function()
         require("config.lsp").setup()
       end,
       requires = {
         "williamboman/nvim-lsp-installer",
-        -- "ray-x/lsp_signature.nvim", -- lsp_signature causing st to crash for some reason
+        "ray-x/lsp_signature.nvim", -- lsp_signature causing st to crash for some reason
       },
     }
 
@@ -185,7 +224,6 @@ function M.setup()
   end
 
   packer_init()
-
   local packer = require("packer")
   packer.init(conf)
   packer.startup(plugins)
