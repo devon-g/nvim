@@ -61,12 +61,6 @@ function M.setup()
 
     -- Git
     use {
-      "lewis6991/gitsigns.nvim",
-      config = function()
-        require("gitsigns").setup()
-      end,
-    }
-    use {
       "kdheepak/lazygit.nvim",
       config = function()
         require("config.lazygit").setup()
@@ -113,7 +107,6 @@ function M.setup()
     use {
       "nvim-lualine/lualine.nvim",
       after = "nvim-treesitter",
-      wants = "nvim-web-devicons",
       config = function()
         require("config.lualine").setup()
       end,
@@ -132,6 +125,9 @@ function M.setup()
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
+      opt = true,
+      cmd = { "Telescope" },
+      module = "telescope",
       wants = {
         "plenary.nvim",
         "popup.nvim",
