@@ -29,3 +29,4 @@ vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope git_files<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", opts)
