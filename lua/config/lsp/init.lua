@@ -9,6 +9,7 @@ local servers = {
   jsonls = {}, -- JSON
   lemminx = {}, -- XML
   pyright = {}, -- Python
+  r_language_server = {}, -- R for Statistics
   sumneko_lua = { -- Lua
     -- settings = {
     --   Lua = {
