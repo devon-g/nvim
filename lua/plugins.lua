@@ -115,8 +115,10 @@ function M.setup()
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
+      opt = true,
+      module = "nvim-treesitter",
+      event = "BufRead",
       run = ":TSUpdate",
-      requires = { "nvim-treesitter/nvim-treesitter-textobjects" },
       config = function()
         require("config.treesitter").setup()
       end,
@@ -125,25 +127,11 @@ function M.setup()
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
-      opt = true,
-      cmd = { "Telescope" },
-      module = "telescope",
-      wants = {
-        "plenary.nvim",
-        "popup.nvim",
-        "telescope-fzf-native.nvim",
-        "telescope-project.nvim",
-        "telescope-repo.nvim",
-        "telescope-file-browser.nvim",
-        "project.nvim",
-      },
       requires = {
-        "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", rune = "make" },
-        "nvim-telescope/telescope-project.nvim",
-        "cljoly/telescope-repo.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
+        {
+          "nvim-telescope/telescope-fzf-native.nvim",
+          run = "make",
+        },
         {
           "ahmedkhalf/project.nvim",
           config = function()
@@ -153,6 +141,18 @@ function M.setup()
       },
       config = function()
         require("config.telescope").setup()
+      end,
+    }
+    -- Telescope fzf backend
+    use {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+    }
+    -- Projects with telescope support
+    use {
+      "ahmedkhalf/project.nvim",
+      config = function()
+        require("project_nvim").setup()
       end,
     }
 
