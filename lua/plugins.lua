@@ -213,6 +213,11 @@ function M.setup()
       },
     }
 
+    -- R support
+    use {
+      "jamespeapen/Nvim-R"
+    }
+
     if packer_bootstrap then
       print("Restart required after installation.")
       require("packer").sync()
