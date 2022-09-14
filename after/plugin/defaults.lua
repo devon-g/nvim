@@ -1,7 +1,7 @@
 -- Remap leader and local leader to <Space>
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 vim.opt.background = "dark" -- Dark background if supported by colorscheme
 vim.opt.clipboard = "unnamedplus" -- Access system clipboard
