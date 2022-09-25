@@ -132,27 +132,9 @@ function M.setup()
           "nvim-telescope/telescope-fzf-native.nvim",
           run = "make",
         },
-        {
-          "ahmedkhalf/project.nvim",
-          config = function()
-            require("project_nvim").setup()
-          end,
-        },
       },
       config = function()
         require("config.telescope").setup()
-      end,
-    }
-    -- Telescope fzf backend
-    use {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make",
-    }
-    -- Projects with telescope support
-    use {
-      "ahmedkhalf/project.nvim",
-      config = function()
-        require("project_nvim").setup()
       end,
     }
 
@@ -217,6 +199,28 @@ function M.setup()
     use {
       "jamespeapen/Nvim-R"
     }
+
+    -- Code folding
+    -- use {
+    --   "kevinhwang91/nvim-ufo",
+    --   opt = true,
+    --   event = { "BufReadPre" },
+    --   wants = { "promise-async" },
+    --   requires = "kevinhwang91/promise-async",
+    --   config = function()
+    --     require("ufo").setup({
+    --       provider_selector = function(bufnr, filetype, buftype)
+    --         return { "lsp", "treesitter", "indent" }
+    --       end,
+    --     })
+    --     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+    --     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+    --   end,
+    --   disable = false,
+    -- }
+
+    -- Java
+    use { "mfussenegger/nvim-jdtls" }
 
     if packer_bootstrap then
       print("Restart required after installation.")
