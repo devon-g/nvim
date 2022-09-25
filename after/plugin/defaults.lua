@@ -30,3 +30,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   group = group
 })
+
+-- Folding options
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = -1
+vim.opt.foldenable = true
