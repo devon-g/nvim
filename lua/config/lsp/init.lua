@@ -33,6 +33,7 @@ local servers = {
     --   },
     -- },
   },
+  texlab = {}, -- LaTeX
   yamlls = {}, -- YAML
 }
 
@@ -59,7 +60,12 @@ local function on_attach(client, bufnr)
 end
 
 -- Add nvim-cmp capabilities to lsp servers
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()) -- for nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true,
+-- }
+M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
 
 local opts = {
   on_attach = on_attach,
@@ -69,5 +75,7 @@ local opts = {
 function M.setup()
   require("config.lsp.installer").setup(servers, opts)
 end
+
+M.on_attach = on_attach
 
 return M
