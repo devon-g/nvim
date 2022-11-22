@@ -124,6 +124,12 @@ function M.setup()
       end,
     }
 
+    -- Fzf
+    use {
+      "junegunn/fzf",
+      run = "./install --bin",
+    }
+
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
