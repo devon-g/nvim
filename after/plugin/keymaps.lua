@@ -21,9 +21,6 @@ vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize -1<CR>", opts)
 vim.api.nvim_set_keymap("n", "<Up>", ":resize -1<CR>", opts)
 vim.api.nvim_set_keymap("n", "<Down>", ":resize +1<CR>", opts)
 
--- Open lazygit popup terminal
-vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
-
 -- Open Telescope
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope git_files<CR>", opts)
