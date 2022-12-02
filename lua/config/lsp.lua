@@ -1,6 +1,6 @@
 local M = {}
 
-local function on_attach(client, bufnr)
+local function on_attach(_, bufnr)
   -- Enable completion triggered by <C-X><C-O>
   -- See `:help omnifunc` and `:help ins-completion` for more information
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -38,21 +38,42 @@ end
 
 -- Add nvim-cmp capabilities to lsp servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.foldingRange = {
---   dynamicRegistration = false,
---   lineFoldingOnly = true,
--- }
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
 
 function M.setup()
   require("mason").setup()
-  require("mason-lspconfig").setup()
-  require("lspconfig")["clangd"].setup{
+  require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "clangd", "pylsp" },
+  })
+  require("lspconfig")["clangd"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
+  require("lspconfig")["pylsp"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+  require("lspconfig")["sumneko_lua"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  })
 end
-
--- M.on_attach = on_attach
 
 return M
