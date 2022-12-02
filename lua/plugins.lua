@@ -173,15 +173,12 @@ function M.setup()
 
     -- LSP
     use {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
-      wants = { "nvim-lsp-installer", "lsp_signature.nvim" },
       config = function()
         require("config.lsp").setup()
-      end,
-      requires = {
-        "williamboman/nvim-lsp-installer",
-        "ray-x/lsp_signature.nvim", -- lsp_signature causing st to crash for some reason
-      },
+      end
     }
 
     -- Java
