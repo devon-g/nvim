@@ -59,14 +59,6 @@ function M.setup()
       end,
     }
 
-    -- Git
-    use {
-      "kdheepak/lazygit.nvim",
-      config = function()
-        require("config.lazygit").setup()
-      end,
-    }
-
     -- IndentLine
     use {
       "lukas-reineke/indent-blankline.nvim",
@@ -91,15 +83,6 @@ function M.setup()
       keys = { "gc", "gcc", "gb", "gbc", "gcO", "gco", "gcA" },
       config = function()
         require("Comment").setup()
-      end,
-    }
-
-    -- Better surround
-    use {
-      "kylechui/nvim-surround",
-      event = "InsertEnter",
-      config = function()
-        require("nvim-surround").setup()
       end,
     }
 
@@ -200,30 +183,6 @@ function M.setup()
         "ray-x/lsp_signature.nvim", -- lsp_signature causing st to crash for some reason
       },
     }
-
-    -- R support
-    use {
-      "jamespeapen/Nvim-R"
-    }
-
-    -- Code folding
-    -- use {
-    --   "kevinhwang91/nvim-ufo",
-    --   opt = true,
-    --   event = { "BufReadPre" },
-    --   wants = { "promise-async" },
-    --   requires = "kevinhwang91/promise-async",
-    --   config = function()
-    --     require("ufo").setup({
-    --       provider_selector = function(bufnr, filetype, buftype)
-    --         return { "lsp", "treesitter", "indent" }
-    --       end,
-    --     })
-    --     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-    --     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-    --   end,
-    --   disable = false,
-    -- }
 
     -- Java
     use { "mfussenegger/nvim-jdtls" }
