@@ -43,7 +43,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for
 function M.setup()
   require("mason").setup()
   require("mason-lspconfig").setup({
-    ensure_installed = { "clangd", "cmake", "pylsp", "sumneko_lua" },
+    ensure_installed = { "clangd", "cmake", "pylsp", "dockerls", "sumneko_lua" },
   })
   require("lspconfig")["clangd"].setup({
     on_attach = on_attach,
@@ -54,6 +54,10 @@ function M.setup()
     capabilities = capabilities,
   })
   require("lspconfig")["pylsp"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+  require("lspconfig")["dockerls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
   })
