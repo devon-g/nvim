@@ -1,6 +1,15 @@
 local M = {}
 
-local function keymappings(client, bufnr)
+local function on_attach(client, bufnr)
+  -- Enable completion triggered by <C-X><C-O>
+  -- See `:help omnifunc` and `:help ins-completion` for more information
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  -- Use LSP as the handler for formatexpr
+  -- See `:help formatexpr` for more information
+  vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+
+  -- Configure key mappings
   local opts = { noremap = true, silent = true }
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -27,8 +36,23 @@ local function keymappings(client, bufnr)
   vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format, bufopts)
 end
 
-function M.setup(client, bufnr)
-  keymappings(client, bufnr)
+-- Add nvim-cmp capabilities to lsp servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true,
+-- }
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
+
+function M.setup()
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+  require("lspconfig")["clangd"].setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 end
+
+-- M.on_attach = on_attach
 
 return M
