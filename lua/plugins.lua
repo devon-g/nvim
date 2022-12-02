@@ -175,6 +175,13 @@ function M.setup()
       end
     }
 
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require("config.null_ls").setup()
+      end
+    }
+
     -- Java
     use { "mfussenegger/nvim-jdtls" }
 
