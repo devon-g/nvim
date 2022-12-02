@@ -44,6 +44,24 @@ function M.setup()
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }),
+      ["<Tab>"] = cmp.mapping({
+        i = function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end,
+      }),
+      ["<S-Tab>"] = cmp.mapping({
+        i = function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end,
+      }),
     }),
     snippet = {
       expand = function(args)
