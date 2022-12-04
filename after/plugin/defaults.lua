@@ -5,7 +5,7 @@ vim.g.maplocalleader = "\\"
 
 vim.opt.background = "dark" -- Dark background if supported by colorscheme
 vim.opt.clipboard = "unnamedplus" -- Access system clipboard
-vim.opt.colorcolumn = "120" -- Draw verticle columns at text column 80 and 120
+vim.opt.colorcolumn = "80,120" -- Draw verticle columns at text column 80 and 120
 vim.opt.expandtab = true -- Expand tab characters into spaces
 vim.opt.guifont = "FiraCode Nerd Font" -- Name(s) of font(s) to be used
 vim.opt.ignorecase = true -- Case insensitive searching unless /C or capital in search
