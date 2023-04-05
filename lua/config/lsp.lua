@@ -44,7 +44,7 @@ capabilities.offsetEncoding = 'utf-8'
 function M.setup()
   require("mason").setup()
   require("mason-lspconfig").setup({
-    ensure_installed = { "clangd", "cmake", "pylsp", "sumneko_lua" },
+    ensure_installed = { "clangd", "cmake", "pylsp", "lua_ls" },
   })
   require("lspconfig")["clangd"].setup({
     on_attach = on_attach,
@@ -62,7 +62,7 @@ function M.setup()
     on_attach = on_attach,
     capabilities = capabilities,
   })
-  require("lspconfig")["sumneko_lua"].setup({
+  require("lspconfig")["lua_ls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
