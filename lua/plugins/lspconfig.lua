@@ -2,49 +2,57 @@ return {
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
+        config = true,
     },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
             "folke/neodev.nvim",
             "hrsh7th/nvim-cmp",
         },
         config = function()
-            -- Pre lspconfig required things
-            require("fidget").setup()
-            require("mason").setup()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "clangd", "rust_analyzer" },
-            })
+            -- Configure lsp servers
+            local servers = {
+                clangd = {},
+                lua_ls = {
+                    Lua = {
+                        workspace = { checkThirdParty = false },
+                        telemetry = { enable = false },
+                    },
+                },
+                rust_analyzer = {},
+            }
 
-            ---- Lspconfig stuffs
+            -- Show lsp init information on bottom left of editor
+            require("fidget").setup()
+
+            -- Manage lsp servers
+            local mason_lspconfig = require("mason-lspconfig")
             local lspconfig = require("lspconfig")
 
-            -- Update capabilities to include what nvim-cmp supports
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            -- Update client capabilities to include what nvim-cmp supports
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities  = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-            -- Set up lua lsp support
-            -- Add neovim support to lua ls
-            require("neodev").setup()
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        runtime = { version = "LuaJIT" },
-                    }
-                }
-            })
+            -- Set up neovim custom lua support
+            require("neodev").setup({})
 
-            -- Configure clangd lsp
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-            })
+            -- Make sure configured servers are installed
+            mason_lspconfig.setup({
+                ensure_installed = vim.tbl_keys(servers),
+           })
 
-            -- Configure rust lsp
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
+            -- Setup lsp servers based on configuration
+            mason_lspconfig.setup_handlers({
+                function (server_name)
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities,
+                        settings = servers[server_name],
+                    })
+                end,
             })
         end
     },
