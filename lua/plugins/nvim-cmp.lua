@@ -7,8 +7,11 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
+
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip",
+
+            "windwp/nvim-autopairs",
         },
         config = function()
             local cmp = require("cmp")
@@ -25,14 +28,14 @@ return {
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = cmp.mapping(function (fallback)
+                    ["<Tab>"] = cmp.mapping(function(fallback)
                         if luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
                         else
                             fallback()
                         end
                     end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function (fallback)
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if luasnip.jumpable(-1) then
                             luasnip.jump(-1)
                         else
@@ -49,6 +52,12 @@ return {
                     { name = "buffer" },
                 })
             })
+
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            cmp.event:on(
+                "confirm_done",
+                cmp_autopairs.on_confirm_done()
+            )
         end
     }
 }
