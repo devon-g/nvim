@@ -1,7 +1,15 @@
+-- Disable line numbers any time a terminal is opened
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = vim.api.nvim_create_augroup("UserTermConfig", {}),
+    callback = function ()
+        vim.opt_local.number = false
+    end
+})
+
 -- Keybinds only needed when an lsp server is attached
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
+    callback = function (ev)
         -- Helper function to make adding lsp keymaps simpler
         local nmap = function (keys, func, desc)
             if desc then
