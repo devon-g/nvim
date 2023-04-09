@@ -5,7 +5,11 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme gruvbox]])
+      vim.api.nvim_command("colorscheme gruvbox")
     end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = true,
   },
 }

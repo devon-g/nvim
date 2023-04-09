@@ -16,14 +16,16 @@ return {
     config = function()
       -- Configure lsp servers
       local servers = {
-        clangd = {},
-        lua_ls = {
+        clangd = {}, -- C/C++
+        hls = {}, -- Haskell
+        lua_ls = { -- Lua
           Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
           },
         },
-        rust_analyzer = {},
+        rust_analyzer = {}, -- Rust
+        texlab = {}, -- LaTeX
       }
 
       -- Show lsp init information on bottom left of editor
