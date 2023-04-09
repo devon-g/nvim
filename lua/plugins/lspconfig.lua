@@ -17,7 +17,6 @@ return {
       -- Configure lsp servers
       local servers = {
         clangd = {}, -- C/C++
-        hls = {}, -- Haskell
         lua_ls = { -- Lua
           Lua = {
             workspace = { checkThirdParty = false },
