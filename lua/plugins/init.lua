@@ -12,4 +12,9 @@ return {
     "numToStr/Comment.nvim",
     config = true,
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = ":call mkdp#util#install()",
+  },
 }

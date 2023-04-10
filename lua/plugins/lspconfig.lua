@@ -17,12 +17,15 @@ return {
       -- Configure lsp servers
       local servers = {
         clangd = {}, -- C/C++
+        hls = {}, -- Haskell
         lua_ls = { -- Lua
           Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
           },
         },
+        marksman = {}, -- Markdown
+        pylsp = {}, -- Python
         rust_analyzer = {}, -- Rust
         texlab = {}, -- LaTeX
       }
