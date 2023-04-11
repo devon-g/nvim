@@ -4,12 +4,14 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
+      "windwp/nvim-ts-autotag",
     },
     config = function()
       pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 
       require("nvim-treesitter.configs").setup({
         auto_install = true,
+        autotag = { enable = true },
         highlight = { enable = true },
         indent = { { enable = true }, disable = { "python" } },
         incremental_selection = {

@@ -17,4 +17,12 @@ return {
     ft = "markdown",
     build = ":call mkdp#util#install()",
   },
+  {
+    "windwp/nvim-autopairs",
+    config = true,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = true,
+  }
 }

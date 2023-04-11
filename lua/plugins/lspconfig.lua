@@ -16,18 +16,23 @@ return {
     config = function()
       -- Configure lsp servers
       local servers = {
+        angularls = {}, -- AngularJS
         clangd = {}, -- C/C++
-        hls = {}, -- Haskell
-        lua_ls = { -- Lua
+        cssls = {},  -- CSS
+        hls = {},    -- Haskell
+        html = {},   -- HTML
+        lua_ls = {
+                     -- Lua
           Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
           },
         },
-        marksman = {}, -- Markdown
-        pylsp = {}, -- Python
+        marksman = {},      -- Markdown
+        pylsp = {},         -- Python
         rust_analyzer = {}, -- Rust
-        texlab = {}, -- LaTeX
+        texlab = {},        -- LaTeX
+        tsserver = {},      -- Typescript
       }
 
       -- Show lsp init information on bottom left of editor
@@ -40,6 +45,7 @@ return {
       -- Update client capabilities to include what nvim-cmp supports
       local capabilities    = vim.lsp.protocol.make_client_capabilities()
       capabilities          = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Set up neovim custom lua support
       require("neodev").setup({})
