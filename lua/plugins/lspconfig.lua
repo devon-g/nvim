@@ -18,6 +18,7 @@ return {
       local servers = {
         angularls = {}, -- AngularJS
         clangd = {}, -- C/C++
+        cmake = {},  -- CMake
         cssls = {},  -- CSS
         hls = {},    -- Haskell
         html = {},   -- HTML
