@@ -1,29 +1,21 @@
-local opts = { noremap = true, silent = true }
+-- Manage diagnostic messages
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
 
--- Center search results
-vim.api.nvim_set_keymap("n", "n", "nzz", opts)
-vim.api.nvim_set_keymap("n", "N", "Nzz", opts)
-
--- Better indent
-vim.api.nvim_set_keymap("v", "<", "<gv", opts)
-vim.api.nvim_set_keymap("v", ">", ">gv", opts)
-
--- Cancel search highlight with ESC
-vim.api.nvim_set_keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
-
--- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-
--- Resizing panes
-vim.api.nvim_set_keymap("n", "<Left>", ":vertical resize +1<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize -1<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Up>", ":resize -1<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Down>", ":resize +1<CR>", opts)
-
--- Open Telescope
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope git_files<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", opts)
+-- Find and move between files
+local telescope_builtin = require("telescope.builtin")
+local telescope_themes = require("telescope.themes")
+vim.keymap.set("n", "<leader>?", telescope_builtin.oldfiles, { desc = "Find recently opened files" })
+vim.keymap.set("n", "<leader><space>", telescope_builtin.buffers, { desc = "Find existing buffers" })
+vim.keymap.set("n", "<leader>/", function ()
+    telescope_builtin.current_buffer_fuzzy_find(telescope_themes.get_dropdown({
+        previewer = false,
+    }))
+end,{ desc = "Fuzzy search in current buffer" })
+vim.keymap.set("n", "<leader>sf", telescope_builtin.find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sh", telescope_builtin.help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sw", telescope_builtin.grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sd", telescope_builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
