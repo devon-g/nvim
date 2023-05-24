@@ -16,11 +16,9 @@ return {
     config = function()
       -- Configure lsp servers
       local servers = {
-        angularls = {}, -- AngularJS
         clangd = {}, -- C/C++
         cmake = {},  -- CMake
         cssls = {},  -- CSS
-        hls = {},    -- Haskell
         html = {},   -- HTML
         lua_ls = {
                      -- Lua
@@ -29,10 +27,8 @@ return {
             telemetry = { enable = false },
           },
         },
-        marksman = {},      -- Markdown
         pylsp = {},         -- Python
         rust_analyzer = {}, -- Rust
-        texlab = {},        -- LaTeX
         tsserver = {},      -- Typescript
       }
 
