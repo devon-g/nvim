@@ -9,7 +9,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "j-hui/fidget.nvim",
+      { "j-hui/fidget.nvim", tag = "legacy" },
       "folke/neodev.nvim",
       "hrsh7th/nvim-cmp",
     },
