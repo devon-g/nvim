@@ -15,12 +15,13 @@ return {
       local mason_dap = require("mason-nvim-dap")
       local dapui = require("dapui")
 
-      adapters.setup(dap)
-      configurations.setup(dap)
+      -- adapters.setup(dap)
+      -- configurations.setup(dap)
       mason.setup()
       mason_dap.setup({
 	ensure_installed = { "debugpy", "codelldb" },
 	automatic_installation = true,
+	handlers = {}
       })
       dapui.setup()
 
