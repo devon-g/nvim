@@ -45,7 +45,9 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Set up neovim custom lua support
-      require("neodev").setup({})
+      require("neodev").setup({
+	library = { plugins = { "nvim-dap-ui" }, types = true },
+      })
 
       -- Make sure configured servers are installed
       mason_lspconfig.setup({
