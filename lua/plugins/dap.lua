@@ -7,9 +7,6 @@ return {
       "williamboman/mason.nvim",
     },
     config = function ()
-      local adapters = require("plugins.dap.adapters")
-      local configurations = require("plugins.dap.configs")
-
       local dap = require("dap")
       local mason = require("mason")
       local mason_dap = require("mason-nvim-dap")
