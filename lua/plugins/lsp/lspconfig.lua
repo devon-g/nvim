@@ -8,9 +8,7 @@ return {
   },
   config = function ()
     local lspconfig = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local telescope_builtin = require("telescope.builtin")
-
 
     local on_attach = function (_, bufnr)
       local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -51,17 +49,22 @@ return {
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     end
 
+    -- Use nvim-cmp to serve lsp suggestions
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    require("neodev").setup()
+    -- Configure lua_ls to support nvim builtins
+    local neodev = require("neodev")
+    neodev.setup()
 
-    lspconfig["pylsp"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    -- Set up lsp servers from config file
+    local servers = require("core.lsp.servers")
+    for server, config in pairs(servers) do
+      lspconfig[server].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	config = config,
+      })
+    end
   end,
 }
