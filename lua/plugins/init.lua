@@ -13,11 +13,6 @@ return {
     config = true,
   },
   {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = ":call mkdp#util#install()",
-  },
-  {
     "windwp/nvim-autopairs",
     config = true,
   },
