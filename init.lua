@@ -11,10 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-vim.g.localleader = " "
-
-require("lazy").setup("plugins", {
+require("core")
+require("lazy").setup({ { import = "plugins" }, { import = "plugins.lsp" } }, {
   install = {
     colorscheme = { "gruvbox" },
   },
