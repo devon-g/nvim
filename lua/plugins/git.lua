@@ -6,10 +6,11 @@ return {
 	"sindrets/diffview.nvim",
 	"nvim-telescope/telescope.nvim",
     },
-    config = true,
+    opts = {},
   },
   {
     "lewis6991/gitsigns.nvim",
-    config = true,
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
   }
 }
