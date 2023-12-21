@@ -14,4 +14,15 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.localleader = " "
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  install = {
+    colorscheme = { "gruvbox" },
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  }
+})
