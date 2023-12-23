@@ -1,17 +1,24 @@
-vim.o.autoindent = true
-vim.o.colorcolumn = "80"
-vim.o.ignorecase = true
-vim.o.number = true
-vim.o.shiftwidth = 4
-vim.o.smartcase = true
-vim.o.softtabstop = 4 -- negative value means use same as shiftwidth
-vim.o.termguicolors = true
-vim.o.undofile = true
+-- Indent
+vim.o.shiftwidth = 2
+vim.o.smartindent = true
+vim.o.softtabstop = 2
 vim.o.wrap = false
 
+-- Search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- Appearance
+vim.o.colorcolumn = "80"
+vim.o.number = true
+vim.o.termguicolors = true
+
+-- Behavior
+vim.o.completeopt = "menuone,noinsert,preview,noselect"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.undofile = true
+
+-- Global
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
