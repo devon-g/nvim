@@ -3,10 +3,10 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
   },
-  config = function ()
+  config = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
-    local servers = require("core.lsp.servers")
+    local servers = require("core.lsps")
 
     mason.setup()
     mason_lspconfig.setup({

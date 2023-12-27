@@ -4,13 +4,13 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    "folke/neodev.nvim"
+    "folke/neodev.nvim",
   },
-  config = function ()
+  config = function()
     local lspconfig = require("lspconfig")
     local telescope_builtin = require("telescope.builtin")
 
-    local on_attach = function (_, bufnr)
+    local on_attach = function(_, bufnr)
       local opts = { buffer = bufnr, noremap = true, silent = true }
       opts.desc = "Show LSP references"
       vim.keymap.set("n", "gR", telescope_builtin.lsp_references, opts)
@@ -58,12 +58,12 @@ return {
     neodev.setup()
 
     -- Set up lsp servers from config file
-    local servers = require("core.lsp.servers")
+    local servers = require("core.lsps")
     for server, config in pairs(servers) do
       lspconfig[server].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	config = config,
+        capabilities = capabilities,
+        on_attach = on_attach,
+        config = config,
       })
     end
   end,
