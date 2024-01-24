@@ -6,5 +6,6 @@ return {
       telemetry = { enable = false },
     },
   },
-  pylsp = {},
+  pyright = {},
+  ruff_lsp = {},
 }
