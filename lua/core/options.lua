@@ -1,7 +1,7 @@
 -- Indent
-vim.o.shiftwidth = 2
+vim.o.shiftwidth = 4
 vim.o.smartindent = true
-vim.o.softtabstop = 2
+vim.o.softtabstop = 4
 vim.o.wrap = false
 
 -- Search
