@@ -50,6 +50,20 @@ return {
 					},
 				})
 			end,
+			["jdtls"] = function()
+				lspconfig.jdtls.setup({
+					cmd = {
+						"jdtls",
+						"-configuration",
+						tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/config",
+						"-data",
+						tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/workspace",
+						"--jvm-arg=-javaagent:"
+							.. require("mason-registry").get_package("jdtls"):get_install_path()
+							.. "/lombok.jar",
+					},
+				})
+			end,
 		})
 
 		-- SET UP LSP KEYBINDS
