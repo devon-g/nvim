@@ -1,2 +1,2 @@
-vim.o.shiftwidth = 8
-vim.o.softtabstop = 8
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
