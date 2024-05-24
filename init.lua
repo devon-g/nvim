@@ -18,6 +18,15 @@ require('mini.deps').setup({ path = { package = path_package } })
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 now(function()
-  add('ellisonleao/gruvbox.nvim')
-  vim.cmd('colorscheme gruvbox')
+  add('sainnhe/gruvbox-material')
+  vim.cmd('colorscheme gruvbox-material')
+end)
+
+now(function()
+  add('nvim-tree/nvim-web-devicons')
+  require('nvim-web-devicons').setup()
+end)
+
+later(function()
+  require('mini.pick').setup()
 end)
