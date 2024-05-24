@@ -29,4 +29,5 @@ end)
 
 later(function()
   require('mini.pick').setup()
+  require('mini.comment').setup()
 end)
