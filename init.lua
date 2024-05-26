@@ -30,13 +30,14 @@ end)
 -- Use special icons
 now(function()
   add('nvim-tree/nvim-web-devicons')
-  require('nvim-web-devicons').setup()
+  require('nvim-web-devicons').setup({})
 end)
 
 -- Enable random mini libs that are one liners
 later(function()
-  require('mini.pick').setup()
-  require('mini.comment').setup()
+  require('mini.pick').setup({})
+  require('mini.comment').setup({})
+  require('mini.pairs').setup({})
 end)
 
 -- Configure mason, lspconfig, and nvim.completion
@@ -57,7 +58,7 @@ later(function()
   local mason_lspconfig = require('mason-lspconfig')
   local lspconfig = require('lspconfig')
 
-  mason.setup()
+  mason.setup({})
   mason_lspconfig.setup({
     ensure_installed = { 'lua_ls' }
   })
@@ -65,7 +66,7 @@ later(function()
   mason_lspconfig.setup_handlers({
     -- Default handler
     function(server)
-      lspconfig[server].setup()
+      lspconfig[server].setup({})
     end,
     -- Specific handlers
     ["lua_ls"] = function() -- Requires special setup for nvim configs
