@@ -15,19 +15,94 @@ end
 
 require('mini.deps').setup({ path = { package = path_package } })
 
+require('autocmd')
+require('options')
+require('keymaps')
+
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+-- Set colorscheme
 now(function()
   add('sainnhe/gruvbox-material')
   vim.cmd('colorscheme gruvbox-material')
 end)
 
+-- Use special icons
 now(function()
   add('nvim-tree/nvim-web-devicons')
   require('nvim-web-devicons').setup()
 end)
 
+-- Enable random mini libs that are one liners
 later(function()
   require('mini.pick').setup()
   require('mini.comment').setup()
+end)
+
+-- Configure mason, lspconfig, and nvim.completion
+later(function()
+  add('williamboman/mason.nvim')
+  add('williamboman/mason-lspconfig.nvim')
+  add('neovim/nvim-lspconfig')
+  add('folke/neodev.nvim')
+
+  require('mini.completion').setup({
+    lsp_completion = {
+      source_func = 'omnifunc',
+      auto_setup = false
+    }
+  })
+
+  local mason = require('mason')
+  local mason_lspconfig = require('mason-lspconfig')
+  local lspconfig = require('lspconfig')
+
+  mason.setup()
+  mason_lspconfig.setup({
+    ensure_installed = { 'lua_ls' }
+  })
+
+  mason_lspconfig.setup_handlers({
+    -- Default handler
+    function(server)
+      lspconfig[server].setup()
+    end,
+    -- Specific handlers
+    ["lua_ls"] = function() -- Requires special setup for nvim configs
+      require("neodev").setup({})
+      lspconfig.lua_ls.setup({
+	settings = {
+	  Lua = {
+	    workspace = { checkThirdParty = false },
+	    telemetry = { enable = false },
+	  },
+	},
+      })
+    end,
+    ["rust_analyzer"] = function()
+      lspconfig.rust_analyzer.setup({
+	settings = {
+	  ["rust-analyzer"] = {
+	    checkOnSave = {
+	      allTargets = false,
+	    },
+	  },
+	},
+      })
+    end,
+    ["jdtls"] = function()
+      lspconfig.jdtls.setup({
+	cmd = {
+	  "jdtls",
+	  "-configuration",
+	  tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/config",
+	  "-data",
+	  tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/workspace",
+	  "--jvm-arg=-javaagent:"
+	    .. require("mason-registry").get_package("jdtls"):get_install_path()
+	    .. "/lombok.jar",
+	},
+      })
+    end,
+  })
 end)
