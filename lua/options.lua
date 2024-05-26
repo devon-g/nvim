@@ -1,4 +1,5 @@
 -- Indent
+vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.softtabstop = 4
