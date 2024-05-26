@@ -15,10 +15,6 @@ end
 
 require('mini.deps').setup({ path = { package = path_package } })
 
-require('autocmd')
-require('options')
-require('keymaps')
-
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 -- Set colorscheme
@@ -38,6 +34,10 @@ later(function()
   require('mini.pick').setup({})
   require('mini.comment').setup({})
   require('mini.pairs').setup({})
+  require('mini.files').setup({})
+end)
+
+later(function()
 end)
 
 -- Configure mason, lspconfig, and nvim.completion
@@ -106,4 +106,10 @@ later(function()
       })
     end,
   })
+end)
+
+later(function()
+  require('autocmd')
+  require('options')
+  require('keymaps')
 end)
