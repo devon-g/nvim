@@ -1,14 +1,14 @@
-local term_augroup = vim.api.nvim_create_augroup("TolerableTerm", {})
+local term_augroup = vim.api.nvim_create_augroup('TolerableTerm', {})
 -- Start terminal buffers in insert mode
-vim.api.nvim_create_autocmd({ "TermOpen", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ 'TermOpen', 'WinEnter' }, {
   group = term_augroup,
-  pattern = "term://*",
-  command = "startinsert",
+  pattern = 'term://*',
+  command = 'startinsert',
 })
 -- Disable line numbers in terminal buffers
-vim.api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd('TermOpen', {
   group = term_augroup,
-  command = "set nonumber norelativenumber",
+  command = 'set nonumber norelativenumber',
 })
 
 -- Toggle hidden files mini.files
@@ -33,8 +33,8 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 -- Define lsp keymaps only when an lsp server is attached to a buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(args)
     vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
 

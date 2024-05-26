@@ -9,16 +9,16 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Appearance
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = '80'
 vim.o.number = true
 vim.o.termguicolors = true
 
 -- Behavior
-vim.o.completeopt = "menuone,noinsert,preview,noselect"
+vim.o.completeopt = 'menuone,noinsert,preview,noselect'
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.undofile = true
 
 -- Global
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '

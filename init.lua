@@ -1,4 +1,4 @@
-local path_package = vim.fn.stdpath("data") .. "/site"
+local path_package = vim.fn.stdpath('data') .. '/site'
 local mini_path = path_package .. '/pack/deps/start/mini.nvim'
 if not vim.loop.fs_stat(mini_path) then
   vim.cmd('echo "Installing `mini.nvim`" | redraw')
@@ -70,7 +70,7 @@ later(function()
     end,
     -- Specific handlers
     ["lua_ls"] = function() -- Requires special setup for nvim configs
-      require("neodev").setup({})
+      require('neodev').setup({})
       lspconfig.lua_ls.setup({
 	settings = {
 	  Lua = {
@@ -80,10 +80,10 @@ later(function()
 	},
       })
     end,
-    ["rust_analyzer"] = function()
+    ['rust_analyzer'] = function()
       lspconfig.rust_analyzer.setup({
 	settings = {
-	  ["rust-analyzer"] = {
+	  ['rust-analyzer'] = {
 	    checkOnSave = {
 	      allTargets = false,
 	    },
@@ -91,17 +91,17 @@ later(function()
 	},
       })
     end,
-    ["jdtls"] = function()
+    ['jdtls'] = function()
       lspconfig.jdtls.setup({
 	cmd = {
-	  "jdtls",
-	  "-configuration",
-	  tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/config",
-	  "-data",
-	  tostring(vim.fn.getenv("HOME")) .. "/.cache/jdtls/workspace",
-	  "--jvm-arg=-javaagent:"
-	    .. require("mason-registry").get_package("jdtls"):get_install_path()
-	    .. "/lombok.jar",
+	  'jdtls',
+	  '-configuration',
+	  tostring(vim.fn.getenv('HOME')) .. '/.cache/jdtls/config',
+	  '-data',
+	  tostring(vim.fn.getenv('HOME')) .. '/.cache/jdtls/workspace',
+	  '--jvm-arg=-javaagent:'
+	    .. require('mason-registry').get_package('jdtls'):get_install_path()
+	    .. '/lombok.jar',
 	},
       })
     end,
