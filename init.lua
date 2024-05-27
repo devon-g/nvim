@@ -41,6 +41,14 @@ later(function()
 end)
 -- }}}
 
+-- {{{ Set up git related things
+later(function()
+  add('lewis6991/gitsigns.nvim')
+  require('gitsigns').setup({})
+  require('mini.git').setup({})
+end)
+-- }}}
+
 -- {{{ Configure mini.files browser
 later(function()
   require('mini.files').setup({})
@@ -186,7 +194,7 @@ later(function()
 end)
 -- }}}
 
--- {{{ Load user config
+-- {{{ Miscellaneous config
 later(function()
   require('autocmd')
   require('options')
