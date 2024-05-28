@@ -1,0 +1,5 @@
+require('plugins/harpoon')
+require('plugins/lsp')
+require('plugins/treesitter')
+require('plugins/ui')
+require('plugins/git')

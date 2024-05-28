@@ -19,8 +19,3 @@ vim.o.completeopt = 'menuone,noinsert,preview,noselect'
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.undofile = true
-
--- Global
--- TODO: move these to before any plugin loading
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
