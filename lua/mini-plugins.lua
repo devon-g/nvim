@@ -1,5 +1,4 @@
 require('mini.deps').setup({})
-require('mini.comment').setup({})
 require('mini.pairs').setup({})
 
 require('mini.pick').setup({})
