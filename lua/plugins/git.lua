@@ -4,4 +4,6 @@ MiniDeps.add('lewis6991/gitsigns.nvim')
 require('gitsigns').setup({})
 
 MiniDeps.add('f-person/git-blame.nvim')
-require('gitblame').setup({})
+require('gitblame').setup({
+  enabled = false,
+})
