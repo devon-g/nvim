@@ -46,8 +46,8 @@ mason_lspconfig.setup_handlers({
         '-data',
         tostring(vim.fn.getenv('HOME')) .. '/.cache/jdtls/workspace',
         '--jvm-arg=-javaagent:'
-          .. require('mason-registry').get_package('jdtls'):get_install_path()
-          .. '/lombok.jar',
+        .. require('mason-registry').get_package('jdtls'):get_install_path()
+        .. '/lombok.jar',
       },
     })
   end,
