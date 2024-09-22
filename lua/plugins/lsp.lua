@@ -1,13 +1,10 @@
-MiniDeps.add('williamboman/mason.nvim')
 MiniDeps.add('williamboman/mason-lspconfig.nvim')
 MiniDeps.add('neovim/nvim-lspconfig')
 MiniDeps.add('folke/neodev.nvim')
 
-local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
 local lspconfig = require('lspconfig')
 
-mason.setup({})
 mason_lspconfig.setup({
   ensure_installed = { 'lua_ls' }
 })
