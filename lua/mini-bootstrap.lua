@@ -1,5 +1,6 @@
-local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
+local path_package = vim.fn.stdpath('data') .. '/site/'
+local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+if not vim.uv.fs_stat(mini_path) then
   vim.cmd('echo "Installing `mini.nvim`" | redraw')
   local clone_cmd = {
     'git',
@@ -10,4 +11,5 @@ if not vim.loop.fs_stat(mini_path) then
   }
   vim.fn.system(clone_cmd)
   vim.cmd('packadd mini.nvim | helptags ALL')
+  vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
