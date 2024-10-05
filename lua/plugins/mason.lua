@@ -3,7 +3,6 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    "ibhagwan/fzf-lua", -- Required for lsp keybinds
     "folke/neodev.nvim", -- Simple neovim dev configs for lua_ls
   },
   config = function()
@@ -39,17 +38,6 @@ return {
           },
         })
       end,
-      ["rust_analyzer"] = function()
-        lspconfig.rust_analyzer.setup({
-          settings = {
-            ["rust-analyzer"] = {
-              checkOnSave = {
-                allTargets = false,
-              },
-            },
-          },
-        })
-      end,
       ["jdtls"] = function()
         lspconfig.jdtls.setup({
           cmd = {
@@ -63,48 +51,6 @@ return {
               .. "/lombok.jar",
           },
         })
-      end,
-    })
-
-    -- SET UP LSP KEYBINDS
-    local fzf_lua = require("fzf-lua")
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(args)
-        local opts = { buffer = args.buf, noremap = true, silent = true }
-
-        opts.desc = "Show LSP references"
-        vim.keymap.set("n", "gR", fzf_lua.lsp_references, opts)
-
-        opts.desc = "Show LSP definitions"
-        vim.keymap.set("n", "gd", fzf_lua.lsp_definitions, opts)
-
-        opts.desc = "Show LSP implementations"
-        vim.keymap.set("n", "gi", fzf_lua.lsp_implementations, opts)
-
-        opts.desc = "Show LSP type definitions"
-        vim.keymap.set("n", "gt", fzf_lua.lsp_typedefs, opts)
-
-        opts.desc = "Show LSP code actions"
-        vim.keymap.set({ "n", "v" }, "<leader>ca", fzf_lua.lsp_code_actions, opts)
-
-        opts.desc = "Show buffer diagnostics"
-        vim.keymap.set("n", "<leader>D", fzf_lua.diagnostics_document, opts)
-
-        opts.desc = "Show line diagnostics"
-        vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-        opts.desc = "Go to previous diagnostic"
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-        opts.desc = "Go to next diagnostic"
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-        opts.desc = "Go to declaration"
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-
-        opts.desc = "Smart rename"
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
       end,
     })
   end,
