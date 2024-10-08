@@ -7,4 +7,5 @@ return {
       vim.api.nvim_command("colorscheme gruvbox")
     end,
   },
+  "nvim-tree/nvim-web-devicons",
 }
