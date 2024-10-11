@@ -1,9 +1,9 @@
 return {
-  "williamboman/mason.nvim",
+  "neovim/nvim-lspconfig",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-    "folke/neodev.nvim",
+    "williamboman/mason.nvim",
+    "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     local mason = require("mason")
@@ -15,17 +15,20 @@ return {
       ensure_installed = { "lua_ls" },
     })
 
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     -- SET UP LSP SERVERS
     local lspconfig = require("lspconfig")
     mason_lspconfig.setup_handlers({
       -- Default handler
       function(server_name)
         lspconfig[server_name].setup({})
+        capabilities = capabilities
       end,
       -- Specific handlers
       ["lua_ls"] = function() -- Requires special setup for nvim configs
-        require("neodev").setup({})
         lspconfig.lua_ls.setup({
+          capabilities = capabilities,
           settings = {
             Lua = {
               workspace = { checkThirdParty = false },
@@ -36,6 +39,7 @@ return {
       end,
       ["jdtls"] = function()
         lspconfig.jdtls.setup({
+          capabilities = capabilities,
           cmd = {
             "jdtls",
             "-configuration",
