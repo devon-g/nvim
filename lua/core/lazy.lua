@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   local out = vim.fn.system({
     "git",
@@ -21,9 +21,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.options")
-require("config.keymaps")
-require("config.autocmd")
+require("core.options")
+require("core.keymaps")
+require("core.autocmd")
 
 require("lazy").setup({
   spec = { { import = "plugins" } },
