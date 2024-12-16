@@ -22,9 +22,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     opts.desc = "Go to declaration"
     vim.keymap.set("n", "grd", vim.lsp.buf.declaration, opts)
 
-    opts.desc = "Go to implementations"
-    vim.keymap.set("n", "gri", vim.lsp.buf.implementation, opts)
-
     opts.desc = "Go to type definitions"
     vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, opts)
   end,
