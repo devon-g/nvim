@@ -3,7 +3,7 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "williamboman/mason.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
   },
   config = function()
     local mason = require("mason")
@@ -15,7 +15,7 @@ return {
       ensure_installed = { "lua_ls" },
     })
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     -- SET UP LSP SERVERS
     local lspconfig = require("lspconfig")
