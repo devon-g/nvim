@@ -1,11 +1,11 @@
-vim.lsp.config('lua_ls', {
+return {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
-  root_markers = { '.luarc.json', '.luarc.jsonc' },
+  root_markers = { '.git', '.luarc.json', '.luarc.jsonc' },
   settings = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-})
+}
