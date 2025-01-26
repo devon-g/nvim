@@ -26,5 +26,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     opts.desc = "Go to type definitions"
     vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, opts)
+
+    opts.desc = "Populate document symbols in quickfix"
+    vim.keymap.set("n", "grs", vim.lsp.buf.document_symbol, opts)
   end,
 })
