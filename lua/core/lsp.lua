@@ -4,8 +4,11 @@ vim.lsp.config("*", {
 })
 
 -- Enable servers configured in lsp/<server_name>.lua
-vim.lsp.enable("clangd")
-vim.lsp.enable("css_lsp")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("superhtml")
-vim.lsp.enable("zls")
+vim.lsp.enable({
+  "clangd",
+  "css_lsp",
+  "lua_ls",
+  "superhtml",
+  "zls",
+  "rust_analyzer",
+})
