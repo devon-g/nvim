@@ -11,4 +11,5 @@ vim.lsp.enable({
   "superhtml",
   "zls",
   "rust_analyzer",
+  "basedpyright",
 })
