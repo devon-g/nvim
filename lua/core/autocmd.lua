@@ -19,10 +19,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { buffer = args.buf, noremap = true, silent = true }
 
     -- DEFAULT GLOBAL LSP KEYMAPS
-    --   grn  | vim.lsp.buf.rename()
     --   gra  | vim.lsp.buf.code_action()
-    --   grr  | vim.lsp.buf.references()
     --   gri  | vim.lsp.buf.implementation()
+    --   grn  | vim.lsp.buf.rename()
+    --   grr  | vim.lsp.buf.references()
     --   gO   | vim.lsp.buf.document_symbol()
     -- CTRL-S | vim.lsp.buf.signature_help()
     --   gq   | formatexpr=vim.lsp.formatexpr()
