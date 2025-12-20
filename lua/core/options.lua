@@ -3,6 +3,7 @@ vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.softtabstop = 4
 vim.o.wrap = false
+vim.o.expandtab = true
 
 -- Search
 vim.o.ignorecase = true
