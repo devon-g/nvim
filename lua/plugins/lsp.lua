@@ -8,6 +8,7 @@ return {
     require("mason-lspconfig").setup(opts)
     vim.lsp.enable({
       "rust_analyzer", -- Use rustup provided analyzer instead of mason
+      "lua_ls"
     })
   end
 }
