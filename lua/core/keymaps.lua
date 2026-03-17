@@ -15,3 +15,20 @@ vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
      return '<Cmd>lua vim.snippet.jump(-1)<CR>'
    end
  end, { expr = true })
+
+local fzf_lua = require("fzf-lua")
+vim.keymap.set("n", "<leader>ff", fzf_lua.files, { desc = "Fuzzy find files" })
+vim.keymap.set("n", "<leader>fg", fzf_lua.live_grep,
+  { desc = "Fuzzy find string" })
+
+local harpoon = require("harpoon")
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-d>",
+  function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<C-j>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-k>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-l>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-;>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>k", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<leader>j", function() harpoon:list():next() end)
+
