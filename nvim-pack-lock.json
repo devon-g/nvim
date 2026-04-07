@@ -13,6 +13,14 @@
       "src": "https://github.com/ThePrimeagen/harpoon",
       "version": "'harpoon2'"
     },
+    "mason.nvim": {
+      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "modus-themes.nvim": {
+      "rev": "17a64464c27c1be605adca13dbe48f2f402fe107",
+      "src": "https://github.com/miikanissi/modus-themes.nvim"
+    },
     "nvim-autopairs": {
       "rev": "c2a0dd0d931d0fb07665e1fedb1ea688da3b80b4",
       "src": "https://github.com/windwp/nvim-autopairs"
