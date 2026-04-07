@@ -51,8 +51,11 @@ require("mason").setup()
 require("blink-cmp").setup({
   keymap = { preset = "default" },
   appearance = { nerd_font_variant = "mono" },
-  completion = { list = { selection = { auto_insert = false } } },
-  documentation = { auto_show = true },
+  completion = {
+    list = { selection = { auto_insert = false } },
+    documentation = { auto_show = true },
+    ghost_text = { enabled = true },
+  },
 })
 
 vim.lsp.enable({
