@@ -1,46 +1,78 @@
+local hooks = function(ev)
+  -- Use available |event-data|
+  local name, kind = ev.data.spec.name, ev.data.kind
+  if name == "blink.cmp" and (kind == "install" or kind == "update") then
+    vim.notify("Building blink.cmp", vim.log.levels.INFO)
+    local obj = vim.system({ "cargo", "build", "--release" },
+      { cwd = ev.data.path }):wait()
+    if obj.code == 0 then
+      vim.notify("Building blink.cmp done", vim.log.levels.INFO)
+    else
+      vim.notify("Building blink.cmp failed", vim.log.levels.ERROR)
+    end
+  end
+end
+vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
+
 vim.pack.add({
+  -- Theme
   "https://github.com/ellisonleao/gruvbox.nvim",
   "https://github.com/miikanissi/modus-themes.nvim",
-  "https://github.com/stevearc/oil.nvim",
+
+  -- LSP
   "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/mason-org/mason.nvim",
+  "https://github.com/saghen/blink.cmp",
+
+  -- Syntax
   "https://github.com/windwp/nvim-autopairs",
-  "https://github.com/ibhagwan/fzf-lua",
-  {
-    src = "https://github.com/ThePrimeagen/harpoon",
-    version = "harpoon2"
-  },
-  "https://github.com/nvim-lua/plenary.nvim", -- Needed by harpoon
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main",
   },
-  "https://github.com/mason-org/mason.nvim",
+
+  -- File and text finding
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/stevearc/oil.nvim",
+  {
+    src = "https://github.com/ThePrimeagen/harpoon",
+    version = "harpoon2"
+  },
+
+  -- Dependencies
+  "https://github.com/nvim-lua/plenary.nvim", -- Needed by harpoon
 })
 
--- Colorscheme
+-- Theme
 vim.api.nvim_command("colorscheme modus")
 
 -- LSP
+require("mason").setup()
+require("blink-cmp").setup({
+  keymap = { preset = "default" },
+  appearance = { nerd_font_variant = "mono" },
+  completion = { list = { selection = { auto_insert = false } } },
+  documentation = { auto_show = true },
+})
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",
 })
 
--- File browsing
+-- File and text finding
 require("Oil").setup()
-
--- Tooling
-require("mason").setup()
-
-require("nvim-autopairs").setup({
-  check_ts = true,
-})
 
 local fzf_lua = require("fzf-lua")
 fzf_lua.setup({ "ivy", "hide" })
 
 local harpoon = require("harpoon")
 harpoon:setup()
+
+-- Syntax
+require("nvim-autopairs").setup({
+  check_ts = true,
+})
 
 require("core.options")
 require("core.keymaps")
