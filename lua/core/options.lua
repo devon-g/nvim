@@ -16,6 +16,10 @@ vim.o.number = true
 -- Behavior
 vim.o.completeopt = "menuone,noinsert,preview,noselect"
 vim.o.undofile = true
+vim.o.foldmethod = "expr"
+vim.o.foldtext = ""
+vim.o.foldlevelstart = 99
+
 
 -- Global
 vim.g.mapleader = " "

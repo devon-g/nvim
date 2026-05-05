@@ -1,10 +1,3 @@
-vim.pack.add({
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    version = "main",
-  },
-})
-
 -- Theme
 vim.pack.add({
   "https://github.com/ellisonleao/gruvbox.nvim",
